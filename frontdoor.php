@@ -5,7 +5,7 @@
 
 	if(isset($_REQUEST["type"])){
 		$type = $_REQUEST["type"];
-		if($type="login"){
+		if($type=="login"){
 			$username = $_REQUEST["username"];
 			$password = $_REQUEST["password"];
 			$result = userExist($username, $password);
@@ -13,11 +13,11 @@
 				$row = mysqli_fetch_assoc($result);
 				$_SESSION['login']=$row["userID"];
 				header("location:userpage.php");
-			}else echo "login error, please verify your password";
+			}else echo "login error, please verify your password";/**/
 			
-
-		}else{
-			
+			echo "new user :o";
+		}elseif($type=="newacc"){
+			echo "old user :o";
 		}
 	}
 	
