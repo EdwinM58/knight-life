@@ -9,7 +9,7 @@
 
 <head>
 	<style>
-		/*.post{
+		.post{
 			background-color: pink;
 			display: block;
 			margin-bottom: 1em;
@@ -25,9 +25,9 @@
 		}
 		.date:hover{
 			opacity: 1;
-		}*/
+		}
 
-		.post{
+		/*.post{
 			border-style: soild;
 			display: block;
 			border-width: 1px;
@@ -35,7 +35,7 @@
 
 			background-color: pink;
 			margin-bottom: 1em;
-		}
+		}*/
 	</style>
 </head>
 <body>
@@ -77,17 +77,19 @@ if($_SESSION["login"]>-1){
 		echo '<div class = "post">';
 		
 		$name = getUserNamebyId($row['userID']);
-		print "username:".$name."<br>";
+		/*print "username:".$name."<br>";
 		print "post:".$row['postContent']."<br>";
 		print "date:".$row['postTime']."<br>";
-		print "likes:".$row['likes']."<br>";
-
+		print "likes:".$row['likes']."<br>";*/
+		echo '<div class="user">@'.$name.'</div>';
+		print '<div class="postContent">' .$row['postContent'].'</div>';
+		print '<div class="date">' .$row['postTime'].'</div>';
 		echo '</div>';
 		/*
 		
 		
-		echo '<div class="user">@'.$name.'</div>';
-		print '<div class="postContent">' .$row['postContent'].'</div>';
+		
+	
 			*/
 
 	}

@@ -17,7 +17,14 @@
 			
 			echo "new user :o";
 		}elseif($type=="newacc"){
-			echo "old user :o";
+			$username = $_REQUEST["username"];
+			$password = $_REQUEST["password"];
+			$email = $_REQUEST["email"];
+			$result = newUser($username, $password, $email);
+			if(mysqli_affected_rows($con)==0){
+				echo "there was an error in creating your account!";
+			}
+
 		}
 	}
 	

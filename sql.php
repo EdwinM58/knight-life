@@ -40,11 +40,15 @@ function getUserNamebyId($id){
 	return "user not found";
 }
 
-function newUser($username, $password, $email){
+function checkUsernameExist($username){
+	
+}
 
+function newUser($username, $password, $email){
 	global $con, $result;
-	$sql = "INSERT INTO `users` (`userID`, `username`, `password`, `email`) VALUES (NULL, 'joeBiden', 'prezi', 'prez@joe.gov');";
-	mysqli_query($con, $sql);
+	$sql = "INSERT INTO `users` (`userID`, `username`, `password`, `email`) VALUES (NULL, '".$username."', '".$password."', '".$email."');";
+	$result = mysqli_query($con, $sql);
+	return $result;
 }
 
 
