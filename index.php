@@ -81,7 +81,7 @@ if($_SESSION["login"]>-1){
 		print "post:".$row['postContent']."<br>";
 		print "date:".$row['postTime']."<br>";
 		print "likes:".$row['likes']."<br>";*/
-		echo '<div class="user">@'.$name.'</div>';
+		echo '<div class="user"><a href="userpage.php?id='.$row['userID'].'">@'.$name.'</a></div>';
 		print '<div class="postContent">' .$row['postContent'].'</div>';
 		print '<div class="date">' .$row['postTime'].'</div>';
 		echo '</div>';
