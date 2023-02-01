@@ -47,6 +47,13 @@ function checkUsernameExist($username){
 	return mysqli_num_rows($result);
 	}
 
+function getPostsByUserID($id){
+	global $con,$result;
+	$sql = 'SELECT * FROM `posts` where userID="'.$id.'" ORDER BY `posts`.`postTime` DESC;';
+	$result = mysqli_query($con, $sql);
+	return $result;
+}
+
 function newUser($username, $password, $email){
 	global $con, $result;
 	$sql = "INSERT INTO `users` (`userID`, `username`, `password`, `email`) VALUES (NULL, '".$username."', '".$password."', '".$email."');";
