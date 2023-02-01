@@ -6,8 +6,8 @@
 			$id=$_SESSION['login'];
 			$post = $_REQUEST["post"];
 			$result = newPost($id,$post);
-			if($result){
-				header("location:userinfo.php");
+			if($result==1){
+				header("location:userpage.php");
 			}else{
 				echo "system error, post failed.";
 			}

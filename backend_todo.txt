@@ -1,4 +1,10 @@
-- user page to show what the users have posted
-- replies
+todo
 - likes
+- replies
+
+
+
+
+done:
+- user page to show what the users have posted
 - new account
