@@ -1,7 +1,8 @@
-# knight-life
+## Setup
+Download [Node.js](https://nodejs.org/en/download/).
+Run this followed commands:
 
-A social media app centered around student life at Rutgers University
-
+``` bash
 # Install dependencies (only the first time)
 npm install
 
@@ -10,3 +11,6 @@ npm run dev
 
 # Build for production in the dist/ directory
 npm run build
+```
+
+https://knight-life.vercel.app/
