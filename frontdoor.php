@@ -16,6 +16,8 @@
 			}else echo "login error, please verify your password";
 			
 
+		}else{
+			
 		}
 	}
 	
@@ -30,9 +32,10 @@
 </form>
 
 <h1>Create Account</h1>
-<form action="newacc.php" method="get">
-	username:<input><br>
-	email:<input><br>
-	password:<input>
+<form method="get">
+	<input name="type" value="newacc" hidden>
+	username:<input name = "username"><br>
+	email:<input name = "email"><br>
+	password:<input type="password" name="password"><br>
 	<input type="submit">
 </form>

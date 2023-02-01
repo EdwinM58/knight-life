@@ -1,0 +1,4 @@
+- user page to show what the users have posted
+- replies
+- likes
+- new account
