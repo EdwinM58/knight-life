@@ -41,8 +41,11 @@ function getUserNamebyId($id){
 }
 
 function checkUsernameExist($username){
-	
-}
+	global $con,$result;
+	$sql = 'SELECT * FROM `users` where username="kai";';
+	$result = mysqli_query($con, $sql);
+	return mysqli_num_rows($result);
+	}
 
 function newUser($username, $password, $email){
 	global $con, $result;

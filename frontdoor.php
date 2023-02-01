@@ -20,10 +20,19 @@
 			$username = $_REQUEST["username"];
 			$password = $_REQUEST["password"];
 			$email = $_REQUEST["email"];
-			$result = newUser($username, $password, $email);
-			if(mysqli_affected_rows($con)==0){
-				echo "there was an error in creating your account!";
-			}
+			if(checkUsernameExist($username)==0){
+				$result = newUser($username, $password, $email);
+				if($result==1){
+					$result = userExist($username, $password);
+
+					$row = mysqli_fetch_assoc($result);
+					$_SESSION['login']=$row["userID"];
+					header("location:userpage.php");
+				}else{
+					echo "there was an issue creating your account, try again.";
+				}
+			}else echo "username is taken, try a different one!";
+			
 
 		}
 	}
@@ -33,16 +42,16 @@
 <h1>Login</h1>
 <form method="get">
 	<input name="type" value="login" hidden>
-	username:<input name="username"><br>
-	password:<input type="password" name="password"><br>
+	username:<input name="username" required><br>
+	password:<input type="password" name="password" required><br>
 	<input type="submit">
 </form>
 
 <h1>Create Account</h1>
 <form method="get">
 	<input name="type" value="newacc" hidden>
-	username:<input name = "username"><br>
-	email:<input name = "email"><br>
-	password:<input type="password" name="password"><br>
+	username:<input name = "username" required><br>
+	email:<input name = "email" required><br>
+	password:<input type="password" name="password" required><br>
 	<input type="submit">
 </form>
