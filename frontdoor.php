@@ -15,7 +15,7 @@
 				header("location:userpage.php");
 			}else echo "login error, please verify your password";/**/
 			
-			echo "new user :o";
+			//echo "new user :o";
 		}elseif($type=="newacc"){
 			$username = $_REQUEST["username"];
 			$password = $_REQUEST["password"];
@@ -42,16 +42,35 @@
 <h1>Login</h1>
 <form method="get">
 	<input name="type" value="login" hidden>
-	username:<input name="username" required><br>
-	password:<input type="password" name="password" required><br>
+	<input name="username" required placeholder="username"><br><br>
+	<input type="password" name="password" required placeholder="password"><br><br>
 	<input type="submit">
 </form>
 
 <h1>Create Account</h1>
 <form method="get">
 	<input name="type" value="newacc" hidden>
-	username:<input name = "username" required><br>
-	email:<input name = "email" required><br>
-	password:<input type="password" name="password" required><br>
+	<input name = "username" placeholder="username" required><br><br>
+	<input name = "email" placeholder="email" required><br><br>
+	<input type="password" name="password" placeholder="password" required><br><br>
 	<input type="submit">
 </form>
+
+<style>
+	html{
+			background-color:#1e1e1e;
+			color:white;
+			@font-face {
+				font-family: "ITC Giovanni";
+				src: url("//db.onlinewebfonts.com/t/0d568bbc9833f436d4f82654a8bfd823.eot");
+			}
+		}
+
+		input{
+			font-size:20;
+			text-align:left;
+			text-align:center;
+			background-color:#1e1e1e;
+			color: white;
+		}
+</style>
