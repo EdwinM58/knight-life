@@ -15,14 +15,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KnightLife</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="//db.onlinewebfonts.com/c/0d568bbc9833f436d4f82654a8bfd823?family=ITC+Giovanni" rel="stylesheet" type="text/css"/>
 
 
 	<style>
 
+		@import url(//db.onlinewebfonts.com/c/0d568bbc9833f436d4f82654a8bfd823?family=ITC+Giovanni);
+
 		html{
 			background-color:#1e1e1e;
+			
+			@font-face {
+				font-family: "ITC Giovanni";
+				src: url("//db.onlinewebfonts.com/t/0d568bbc9833f436d4f82654a8bfd823.eot");
+			}
 		}
-
 
 		.posts{
 			color:white;
@@ -104,10 +111,15 @@
 		}
 		
 		input{
+			text-align:left;
+			text-align:center;
+			background-color:#1e1e1e;
 			color: white;
 		}
 
 		input[type=submit]{
+			float:left;
+			clear:left;
 			width: 100px;
 			background-color:maroon;
 		}
@@ -117,17 +129,28 @@
 		}
 
 		.title{
+			text-align:center;
+			font-size:100;
 			color:white;
+			background-color:maroon;
 		}
 
-	</style>
-</head>
+		.textarea{
+			background-color:#1e1e1e;
+			color:white;
+			font-size:14;
+		}
 
-<body>
+
+	</style>
 
 <div class="title">
 Knight Life
 </div>
+
+</head>
+
+<body>
 
 
 <?php
@@ -139,18 +162,16 @@ else echo '<a href="frontdoor.php">login/create account</a>';
 
 <?php
 
-
-
 if($_SESSION["login"]>-1){
 
 	echo '
 		<div class="tweetbox">
 			<form action="post.php" method="get">
 				<div class="tweetbox__input">
-					<input name="post" type="text" placeholder="What would you like to say?">
+					<textarea class=textarea id="post" name="post" type="text" placeholder="What would you like to say?" rows="4" cols="50"></textarea>
 					<br>
 					
-					<input type="submit" value="post">
+					<input type="submit" value="Post">
 					
 				</div>
 			</form>
