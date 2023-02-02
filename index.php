@@ -61,6 +61,7 @@
 			margin-top: 10px;
    		 	margin-bottom: 10px;
    		 	font-size: 16px;
+			word-wrap: break-word;
 		}
 
 		.postTime{
@@ -201,7 +202,9 @@ if($_SESSION["login"]>-1){
 		print '<div class="post__body">';
 		print '<div class="post__header">';
 		echo '<div class="post__user"><a href="userpage.php?id='.$row['userID'].'">@'.$name.'</a></div>';
-		print '<div class="post__content">' .$row['postContent'].'</div>';
+		print '<div class="post__content">
+		' .$row['postContent'].'
+		</div>';
 		print '<div class="postTime">' .$row['postTime'].'</div>';
 		print '<div class="post__Footer">
 					<button class="material-symbols-outlined"> &#xE87D;  
