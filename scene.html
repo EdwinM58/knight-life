@@ -1,0 +1,174 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.117.0/build/three.min.js"></script>
+
+    <style>
+      .webgl {
+        position: fixed;
+        top: 0;
+        left: 0;
+        outline: none;
+      }
+
+      html,
+      body {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="webgl"></canvas>
+    <script type="module">
+      import { OrbitControls } from "./OrbitControls.js";
+      import { GLTFLoader } from "./GLTFLoader.js";
+
+      /**
+       * Base
+       */
+      // Canvas
+      const canvas = document.querySelector(".webgl");
+
+      // Scene
+      const scene = new THREE.Scene();
+
+      // Loaders
+      const textureLoader = new THREE.TextureLoader();
+      const particlesTexture = textureLoader.load("5.png");
+      const gltfLoader = new GLTFLoader();
+
+      let rLogo = new THREE.Mesh();
+
+      // //LOGO
+      gltfLoader.load(
+        // resource URL
+        "logo.glb",
+        // called when the resource is loaded
+        function (gltf) {
+          rLogo = gltf.scene;
+          rLogo.scale.set(0.017, 0.017, 0.017);
+          rLogo.position.x = 0.3;
+          rLogo.position.z = -2;
+          console.log(rLogo.position);
+
+          // Color change
+          rLogo.traverse((object) => {
+            if (object.isMesh) {
+              object.material.color.set("#ff0000");
+              console.log(object.material.color);
+            }
+          });
+          scene.add(rLogo);
+        }
+      );
+
+      // Lights
+      const light1 = new THREE.DirectionalLight("#afeda8", 5, 0, 0.6);
+      light1.position.y = -1.232;
+      light1.position.z += 2;
+      scene.add(light1);
+
+      // Particles
+      const particlesGeo = new THREE.BufferGeometry();
+      const count = 4000;
+
+      const positions = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+      for (let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 20;
+        colors[i] = Math.random();
+      }
+
+      particlesGeo.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
+
+      particlesGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+      //material
+      const particlesMaterial = new THREE.PointsMaterial();
+      particlesMaterial.size = 0.1;
+      particlesMaterial.sizeAttenuation = true;
+      particlesMaterial.color = new THREE.Color("#FFFFFF");
+      particlesMaterial.map = particlesTexture;
+
+      particlesMaterial.transparent = true;
+      particlesMaterial.alphaMap = particlesTexture;
+
+      particlesMaterial.depthWrite = false;
+      particlesMaterial.blending = THREE.AdditiveBlending;
+
+      //mesh
+      const particles = new THREE.Points(particlesGeo, particlesMaterial);
+      scene.add(particles);
+
+      // Sizes
+      const sizes = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+
+      window.addEventListener("resize", () => {
+        // Update sizes
+        sizes.width = window.innerWidth;
+        sizes.height = window.innerHeight;
+
+        // Update camera
+        camera.aspect = sizes.width / sizes.height;
+        camera.updateProjectionMatrix();
+
+        // Update renderer
+        renderer.setSize(sizes.width, sizes.height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      });
+
+      // Camera
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        sizes.width / sizes.height,
+        0.1,
+        100
+      );
+      camera.position.z = 3;
+      scene.add(camera);
+
+      //controls
+      const controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+      });
+      renderer.setSize(sizes.width, sizes.height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x1e1e1e, 1);
+      // Animate
+      const clock = new THREE.Clock();
+
+      const tick = () => {
+        const elapsedTime = clock.getElapsedTime();
+
+        particlesGeo.attributes.position.needsUpdate = true;
+
+        particles.rotation.y = (elapsedTime - 1) * 0.1;
+
+        rLogo.position.y = Math.sin(elapsedTime * 0.75) * 0.2;
+
+        light1.position.x = Math.sin(elapsedTime * 0.5) * (5, -5);
+
+        // Update controls
+
+        controls.update();
+
+        // Render
+        renderer.render(scene, camera);
+
+        // Call tick again on the next frame
+        window.requestAnimationFrame(tick);
+      };
+
+      tick();
+    </script>
+  </body>
+</html>
