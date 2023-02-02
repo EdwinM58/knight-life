@@ -109,7 +109,7 @@
 
 		input[type=submit]{
 			width: 100px;
-			background-color:red;
+			background-color:maroon;
 		}
 
 		::placeholder{
