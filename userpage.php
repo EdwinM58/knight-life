@@ -63,6 +63,13 @@
 				src: url("//db.onlinewebfonts.com/t/0d568bbc9833f436d4f82654a8bfd823.eot");
 			}
 		}
+	
+	a { color: white }
+	a:visited { text-decoration: none; color: white; }
+	a:hover { text-decoration: none; color:blue; }
+	a:focus { text-decoration: none; color:yellow; }
+	a:hover, a:active { text-decoration: none; color:red }
+
 
 	.posts{
 			color:white;
