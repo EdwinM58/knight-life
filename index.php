@@ -24,7 +24,7 @@
 
 		html{
 			background-color:#1e1e1e;
-			
+			color:white;
 			@font-face {
 				font-family: "ITC Giovanni";
 				src: url("//db.onlinewebfonts.com/t/0d568bbc9833f436d4f82654a8bfd823.eot");
@@ -179,8 +179,8 @@ if($_SESSION["login"]>-1){
 		</div>
 		';
 
-}else echo "you must login to post <br>";
-
+}
+else echo "you must login to post <br>";
 
 
 	$result = getPosts();
