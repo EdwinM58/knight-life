@@ -124,7 +124,13 @@
 			width: 100px;
 			background-color:maroon;
 		}
-
+		
+		a {color: white}
+		a:visited { text-decoration: none; color: white; }
+		a:hover { text-decoration: none; color:blue; }
+		a:focus { text-decoration: none; color:yellow; }
+		a:hover, a:active { text-decoration: none; color:red }
+		
 		::placeholder{
 			color:darkgrey;
 		}
